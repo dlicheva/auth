@@ -108,7 +108,6 @@ export const LOCALDEFAULTS = {
 };
 
 export const ProviderAliases = {
-    'laravel/passport': 'laravelPassport',
     'laravel/sanctum': 'laravelSanctum',
 };
 
