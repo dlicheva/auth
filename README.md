@@ -184,33 +184,6 @@ In addition to [Auth Tokens](https://auth.nuxtjs.org/api/tokens);
 
 By default the `$auth.strategy` getter uses the `Scheme` type which does not have `token` or `refreshToken` property types. To help with this, a `$auth.refreshStrategy` and a `$auth.tokenStrategy` getter have been added for typing. They all do the same thing, this is just meant for type hinting.
 
-## Oauth2
-
-Oauth2 now has client window authentication thanks to this pull request: https://github.com/nuxt-community/auth-module/pull/1746 
-
-Properties have been changed to:
-
-### `clientWindow`
-
-- Type: `Boolean`
-- Default: `false`
-
-Enable/disable the use of a popup for client authentication.
-
-### `clientWidth`
-
-- Type: `Number`
-- Default: `400`
-
-The width of the client window.
-
-### `clientHieght`
-
-- Type: `Number`
-- Default: `600`
-
-The width of the client window.
-
 ## Aliases
 Available aliases to use within nuxt
 

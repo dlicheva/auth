@@ -1,4 +1,4 @@
-import type { Oauth2SchemeOptions, RefreshSchemeOptions } from '../runtime';
+import type { RefreshSchemeOptions } from '../runtime';
 import type { StrategyOptions, HTTPRequest, TokenableSchemeOptions } from '../types';
 import type { Nuxt } from '@nuxt/schema';
 import { addServerHandler, addTemplate } from '@nuxt/kit';
@@ -8,43 +8,6 @@ import { defu } from 'defu';
 
 export function assignDefaults<SOptions extends StrategyOptions>(strategy: SOptions, defaults: SOptions): void {
     Object.assign(strategy, defu(strategy, defaults));
-}
-
-export function addAuthorize<SOptions extends StrategyOptions<Oauth2SchemeOptions>>(nuxt: Nuxt, strategy: SOptions, useForms: boolean = false): void {
-    // Get clientSecret, clientId, endpoints.token and audience
-    const clientSecret = strategy.clientSecret;
-    const clientId = strategy.clientId;
-    const tokenEndpoint = strategy.endpoints!.token;
-    const audience = strategy.audience;
-
-    // IMPORTANT: remove clientSecret from generated bundle
-    delete strategy.clientSecret;
-
-    // Endpoint
-    const endpoint = `/_auth/oauth/${strategy.name}/authorize`;
-    strategy.endpoints!.token = endpoint;
-
-    // Set response_type to code
-    strategy.responseType = 'code';
-
-    addTemplate({
-        filename: `authorize-${strategy.name}.ts`,
-        write: true,
-        getContents: () => authorizeGrant({
-            strategy,
-            useForms,
-            clientSecret,
-            clientId,
-            tokenEndpoint,
-            audience,
-        }),
-    })
-
-    addServerHandler({
-        route: endpoint,
-        method: 'post',
-        handler: join(nuxt.options.buildDir, `authorize-${strategy.name}.ts`),
-    })
 }
 
 export function addLocalAuthorize<SOptions extends StrategyOptions<RefreshSchemeOptions>>(nuxt: Nuxt, strategy: SOptions): void {
