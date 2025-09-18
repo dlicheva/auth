@@ -3,7 +3,7 @@ import type { StrategyOptions } from './strategy';
 import type { PartialExcept } from './utils';
 import type { Nuxt } from '@nuxt/schema';
 
-export type ProviderNames<N = ''> = 'google' | 'github' | 'facebook' | 'discord' | N | ((nuxt: Nuxt, strategy: StrategyOptions, ...args: any[]) => void);
+export type ProviderNames<N = ''> = 'google' | 'github' | 'facebook'  | N | ((nuxt: Nuxt, strategy: StrategyOptions, ...args: any[]) => void);
 
 export interface ImportOptions {
     name: string;

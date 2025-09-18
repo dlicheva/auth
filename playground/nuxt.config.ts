@@ -7,10 +7,6 @@ export default defineNuxtConfig({
     ],
     auth: {
         strategies: {
-            discord: {
-                clientId: '',
-                clientSecret: '',
-            }
         }
     },
 });
