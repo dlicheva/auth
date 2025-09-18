@@ -1,4 +1,3 @@
-import type { RefreshSchemeOptions } from '../runtime';
 import type { StrategyOptions, HTTPRequest, TokenableSchemeOptions } from '../types';
 import type { Nuxt } from '@nuxt/schema';
 import { addServerHandler, addTemplate } from '@nuxt/kit';
@@ -10,65 +9,7 @@ export function assignDefaults<SOptions extends StrategyOptions>(strategy: SOpti
     Object.assign(strategy, defu(strategy, defaults));
 }
 
-export function addLocalAuthorize<SOptions extends StrategyOptions<RefreshSchemeOptions>>(nuxt: Nuxt, strategy: SOptions): void {
-    const tokenEndpoint = strategy.endpoints?.login?.url;
-    const refreshEndpoint = strategy.endpoints?.refresh?.url;
-
-    // Endpoint
-    const endpoint = `/_auth/local/${strategy.name}/authorize`;
-    strategy.endpoints!.login!.url = endpoint;
-    strategy.endpoints!.refresh!.url = endpoint;
-
-    addTemplate({
-        filename: `local-${strategy.name}.ts`,
-        write: true,
-        getContents: () => localAuthorizeGrant({
-            strategy,
-            tokenEndpoint,
-            refreshEndpoint
-        }),
-    })
-
-    addServerHandler({
-        route: endpoint,
-        method: 'post',
-        handler: join(nuxt.options.buildDir, `local-${strategy.name}.ts`),
-    })
-}
-
-export function initializePasswordGrantFlow<SOptions extends StrategyOptions<RefreshSchemeOptions>>(nuxt: Nuxt, strategy: SOptions): void {
-    // Get clientSecret, clientId, endpoints.login.url
-    const clientSecret = strategy.clientSecret;
-    const clientId = strategy.clientId;
-    const tokenEndpoint = strategy.endpoints!.token as string;
-
-    // IMPORTANT: remove clientSecret from generated bundle
-    delete strategy.clientSecret;
-
-    // Endpoint
-    const endpoint = `/_auth/${strategy.name}/token`;
-    strategy.endpoints!.login!.url = endpoint;
-    strategy.endpoints!.refresh!.url = endpoint;
-
-    addTemplate({
-        filename: `password-${strategy.name}.ts`,
-        write: true,
-        getContents: () => passwordGrant({
-            strategy,
-            clientSecret,
-            clientId,
-            tokenEndpoint,
-        })
-    })
-
-    addServerHandler({
-        route: endpoint,
-        method: 'post',
-        handler: join(nuxt.options.buildDir, `password-${strategy.name}.ts`),
-    })
-}
-
-export function assignAbsoluteEndpoints<SOptions extends StrategyOptions<(TokenableSchemeOptions | RefreshSchemeOptions) & { url: string; }>>(strategy: SOptions): void {
+export function assignAbsoluteEndpoints<SOptions extends StrategyOptions<(TokenableSchemeOptions) & { url: string; }>>(strategy: SOptions): void {
     const { url, endpoints } = strategy;
 
     if (endpoints) {
