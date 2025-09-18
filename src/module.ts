@@ -77,16 +77,12 @@ export default defineNuxtModule({
 
         nuxt.options.alias['#auth/runtime'] = runtime;
 
-        // Providers
-        const providers = resolver.resolve('runtime/providers');
-        nuxt.options.alias['#auth/providers'] = providers;
-
         // Utils
         const utils = resolver.resolve('utils');
         nuxt.options.alias['#auth/utils'] = utils;
 
         // Transpile
-        nuxt.options.build.transpile.push(runtime, providers, utils)
+        nuxt.options.build.transpile.push(runtime, utils)
 
         if (nuxt.options.ssr) {
             addServerHandler({

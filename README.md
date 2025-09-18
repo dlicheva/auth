@@ -216,7 +216,6 @@ Available aliases to use within nuxt
 
 - `#auth/runtime`
 - `#auth/utils`
-- `#auth/providers`
 
 ## Development
 

@@ -1,9 +1,7 @@
 import type { StrategyOptions, ModuleOptions, SchemeNames, ImportOptions } from './types';
 import type { Nuxt } from '@nuxt/schema';
-import { OAUTH2DEFAULTS, LOCALDEFAULTS, ProviderAliases, BuiltinSchemes, LocalSchemes, OAuth2Schemes } from './runtime/inc/default-properties';
-import { addAuthorize, addLocalAuthorize, assignAbsoluteEndpoints, assignDefaults, } from './utils/provider';
+import { BuiltinSchemes } from './runtime/inc/default-properties';
 import { hasOwn } from './utils';
-import * as AUTH_PROVIDERS from './runtime/providers';
 import { resolvePath } from '@nuxt/kit';
 import { existsSync } from 'fs';
 import { hash } from 'ohash';
@@ -35,15 +33,6 @@ export async function resolveStrategies(nuxt: Nuxt, options: ModuleOptions) {
             strategy.ssr = strategy.ssr;
         } else {
             strategy.ssr = nuxt.options.ssr;
-        }
-
-        // Try to resolve provider
-        const provider = await resolveProvider(strategy.provider as string, nuxt, strategy);
-
-        delete strategy.provider;
-
-        if (typeof provider === "function") {
-            provider(nuxt, strategy);
         }
 
         // Default scheme (same as name)
@@ -92,38 +81,5 @@ export async function resolveScheme(scheme: string) {
             as: 'Scheme$' + hash({ path: _path }),
             from: _path,
         };
-    }
-}
-
-export async function resolveProvider(provider: string | ((nuxt: Nuxt, strategy: StrategyOptions, ...args: any[]) => void), nuxt: Nuxt, strategy: StrategyOptions) {
-    provider = (ProviderAliases[provider as keyof typeof ProviderAliases] || provider);
-
-    if (AUTH_PROVIDERS[provider as keyof typeof AUTH_PROVIDERS]) {
-        return AUTH_PROVIDERS[provider as keyof typeof AUTH_PROVIDERS];
-    }
-
-    // return the provider
-    if (typeof provider === 'function') {
-        return provider(nuxt, strategy);
-    }
-
-    // return an empty function as it doesn't use a provider
-    if (typeof provider === 'string') {
-        return (nuxt: Nuxt, strategy: StrategyOptions) => {
-            if (OAuth2Schemes.includes(strategy.scheme!) && strategy.ssr) {
-                assignDefaults(strategy, OAUTH2DEFAULTS as typeof strategy)
-                addAuthorize(nuxt, strategy, true)
-            }
-
-            if (LocalSchemes.includes(strategy.scheme!) && strategy.ssr) {
-                assignDefaults(strategy, LOCALDEFAULTS as typeof strategy)
-
-                if (strategy.url) {
-                    assignAbsoluteEndpoints(strategy);
-                }
-
-                addLocalAuthorize(nuxt, strategy)
-            }
-        }
     }
 }

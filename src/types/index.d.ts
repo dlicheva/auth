@@ -2,7 +2,6 @@ import type { ModuleOptions } from './options';
 import type { Auth } from '../runtime';
 import * as NuxtSchema from '@nuxt/schema';
 
-export * from './provider';
 export * from './request';
 export * from './router';
 export * from './scheme';

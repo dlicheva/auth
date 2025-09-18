@@ -1,6 +1,5 @@
-import type { SchemePartialOptions, RefreshableSchemeOptions, SchemeOptions, SchemeNames } from './scheme';
+import type { RefreshableSchemeOptions, } from './scheme';
 import type { CookieSchemeOptions, Oauth2SchemeOptions } from '../runtime/schemes';
-import type { ProviderPartialOptions, ProviderOptions, ProviderNames } from './provider';
 import type { RecursivePartial } from './utils';
 
 export type Strategy<S = {}> = S & Strategies;
