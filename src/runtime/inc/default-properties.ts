@@ -115,7 +115,6 @@ export const BuiltinSchemes = {
     cookie: 'CookieScheme',
     refresh: 'RefreshScheme',
     oauth2: 'Oauth2Scheme',
-    openIDConnect: 'OpenIDConnectScheme',
 };
 
 export const LocalSchemes = [
@@ -126,5 +125,4 @@ export const LocalSchemes = [
 
 export const OAuth2Schemes = [
     'oauth',
-    'openIDConnect',
 ]
