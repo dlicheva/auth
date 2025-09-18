@@ -4,7 +4,6 @@ export default defineNuxtConfig({
     modules: [
         AuthModule as any,
         "@nuxt-alt/http",
-        "@nuxt-alt/proxy",
         '@nuxt/ui'
     ],
     auth: {

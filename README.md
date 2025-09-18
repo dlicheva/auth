@@ -44,7 +44,9 @@ export default defineNuxtConfig({
 
 ## Changes 
 
-The module now uses '@nuxt-alt/http' to function, that module extends ohmyfetch. Please note that if you were using `data` to post data, you now need to use `body` since this is what `ohmyfetch` uses. If you intend to use ssr, please consider using the `@nuxt-alt/proxy` module.
+The module now uses '@nuxt-alt/http' to function, that module extends ohmyfetch. 
+Please note that if you were using `data` to post data, you now need to use `body` since this is what `ohmyfetch` uses. 
+If you intend to use ssr, please consider using the `@nuxt-alt/proxy` module.
 
 ## Composable
 
