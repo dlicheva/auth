@@ -108,7 +108,6 @@ export const LOCALDEFAULTS = {
 };
 
 export const ProviderAliases = {
-    'laravel/jwt': 'laravelJWT',
     'laravel/passport': 'laravelPassport',
     'laravel/sanctum': 'laravelSanctum',
 };
@@ -117,7 +116,6 @@ export const BuiltinSchemes = {
     local: 'LocalScheme',
     cookie: 'CookieScheme',
     refresh: 'RefreshScheme',
-    laravelJWT: 'LaravelJWTScheme',
     oauth2: 'Oauth2Scheme',
     openIDConnect: 'OpenIDConnectScheme',
     auth0: 'Auth0Scheme',
@@ -127,7 +125,6 @@ export const LocalSchemes = [
     'local',
     'cookie',
     'refresh',
-    'laravelJWT',
 ]
 
 export const OAuth2Schemes = [
