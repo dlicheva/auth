@@ -1,18 +1,18 @@
 {
-    "name": "@nuxt-alt/auth",
-    "version": "3.1.7",
+    "name": "@dlicheva/auth",
+    "version": "1.0.0",
     "description": "An alternative module to @nuxtjs/auth",
-    "homepage": "https://github.com/nuxt-alt/auth",
-    "author": "Denoder",
+    "homepage": "https://github.com/dlicheva/auth",
+    "author": "Denoder, dlicheva",
     "keywords": [
         "auth",
         "nuxt",
-        "nuxt3",
+        "nuxt4",
         "nuxtjs",
         "nuxt-module",
         "nuxt-plugin",
         "@nuxtjs/auth",
-        "@nuxt-alt/auth"
+        "@dlicheva/auth"
     ],
     "license": "MIT",
     "type": "module",
@@ -50,7 +50,6 @@
     "devDependencies": {
         "@nuxt-alt/proxy": "^2.5.8",
         "@nuxt/schema": "^3.12.2",
-        "@nuxtjs/i18n": "next",
         "@types/node": "^20",
         "jiti": "^1.21.6",
         "nuxt": "^3.9.3",
@@ -59,14 +58,13 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/nuxt-alt/auth.git",
-        "directory": "@nuxt-alt/auth"
+        "url": "git+https://github.com/dlicheva/auth.git",
+        "directory": "@dlicheva/auth"
     },
     "bugs": {
-        "url": "https://github.com/nuxt-alt/auth/issues"
+        "url": "https://github.com/dlicheva/auth/issues"
     },
     "publishConfig": {
         "access": "public"
-    },
-    "packageManager": "yarn@4.0.2"
+    }
 }
