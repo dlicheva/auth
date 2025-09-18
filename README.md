@@ -224,3 +224,10 @@ npm install
 npm run prepack
 npm run dev
 ```
+
+Then when you finish your changes, bundle the package with:
+```
+npm run prepack
+```
+This creates a `dist` folder.
+The `dist` folder can be used in your Nuxt 3/4 `/modules`. 
