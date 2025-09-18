@@ -215,3 +215,12 @@ Available aliases to use within nuxt
 - `#auth/runtime`
 - `#auth/utils`
 - `#auth/providers`
+
+## Development
+
+Use these commands to start the local development environment:
+```
+npm install
+npm run prepack
+npm run dev
+```

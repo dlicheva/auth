@@ -110,7 +110,7 @@ export interface ModuleOptions {
      *
      */
     redirect: {
-        login: string | ((auth: Auth => string);
+        login: string | ((auth: Auth) => string);
         logout: string | ((auth: Auth) => string);
         callback: string | ((auth: Auth) => string);
         home: string | ((auth: Auth) => string);

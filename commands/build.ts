@@ -58,6 +58,7 @@ export default defineCommand({
             externals: [
                 '#app',
                 '#vue-router',
+                'vue-router',
                 '@refactorjs/ofetch',
                 'ofetch',
                 '@nuxt/schema',
