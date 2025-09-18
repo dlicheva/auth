@@ -1,7 +1,7 @@
 <template>
-    <UPageBody>
+    <div>
         <pre>{{ auth.user }}</pre>
-    </UPageBody>
+    </div>
 </template>
 
 <script lang="ts" setup>
